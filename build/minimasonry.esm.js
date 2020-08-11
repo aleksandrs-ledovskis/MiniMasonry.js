@@ -75,7 +75,7 @@ MiniMasonry.prototype.layout =  function() {
     if (this._count == null) {
         this._count = this.getCount();
     }
-    var width   = Math.round(((this._width - this._gutter) / this._count) - this._gutter);
+    var width = Math.round((this._width - this._gutter * (this._count - 1)) / this._count);
 
     for (var i = 0; i < this._count; i++) {
         this._columns[i] = 0;
@@ -89,7 +89,7 @@ MiniMasonry.prototype.layout =  function() {
         this._sizes[k] = children[k].clientHeight;
     }
 
-    var initialLeft = this._gutter;
+    var initialLeft = 0;
     if (this._count > this._sizes.length) {
         //If more columns than children
         initialLeft = (((this._width - (this._sizes.length * width)) - this._gutter) / 2) - this._gutter;
